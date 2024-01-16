@@ -3,10 +3,7 @@ import { useSelector } from "react-redux";
 // Styles
 import * as Styles from "./styles";
 import Cartitem from "../cart-item/index";
-import {
-  selectProductsCount,
-  selectProductsTotalPrice,
-} from "../../redux/cart/cart.selectors";
+import { selectProductsTotalPrice } from "../../redux/cart/cart.selectors";
 const Cart = ({ isVisible, setIsVisible }) => {
   const handleEscapeAreaClick = () => setIsVisible(false);
 
