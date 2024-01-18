@@ -7,26 +7,24 @@ import Cart from "../cart/index";
 import * as Styles from "./styles";
 import rootReducer from "../../redux/root-reducer";
 import UserActionTypes from "../../redux/user/action-types";
-import { logoutUser, loguinUser } from "../../redux/user/actions";
+import { logoutUser, loginUser } from "../../redux/user/actions";
+import { selectProductsCount } from "../../redux/cart/cart.selectors";
 
 function Header() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
 
   const { currentUser } = useSelector((rootReducer) => rootReducer.userReducer);
   const { products } = useSelector((rootReducer) => rootReducer.cartReducer);
+  const productsCount = useSelector(selectProductsCount);
 
   const dispatch = useDispatch();
-
-  const productsCount = useMemo(() => {
-    return products.reduce((acc, curr) => acc + curr.quantity, 0);
-  }, [products]);
 
   const handleCartClick = () => {
     setCartIsVisible(true);
   };
 
   const handleLoginClick = () => {
-    dispatch(loguinUser({ name: "ander", email: "ander@raft" }));
+    dispatch(loginUser({ name: "ander", email: "ander@raft" }));
   };
 
   const handleLogoutClick = () => {
